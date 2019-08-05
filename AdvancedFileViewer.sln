@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedFileViewer", "AdvancedFileViewer.csproj", "{2567DED7-03CC-40DD-A116-3E0FC3BA3804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "PixaBayAPI\ClassLibrary1\ClassLibrary1.csproj", "{3301A218-8CF4-4A6B-96CF-A59C046C055E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixabayAPI", "PixaBayAPI\ClassLibrary1\PixabayAPI.csproj", "{3301A218-8CF4-4A6B-96CF-A59C046C055E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
