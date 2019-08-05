@@ -179,23 +179,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\": {},
+    "C:\\Users\\William Sunderland\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+      "projectUniqueName": "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
       "projectName": "PixabayAPI",
-      "projectPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
-      "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
+      "projectPath": "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+      "packagesPath": "C:\\Users\\William Sunderland\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Brandin Goldsberry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\William Sunderland\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
