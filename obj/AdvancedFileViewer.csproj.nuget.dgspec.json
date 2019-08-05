@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Brandin Goldsberry\\source\\repos\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {}
+    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Brandin Goldsberry\\source\\repos\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {
+    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Brandin Goldsberry\\source\\repos\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
+        "projectUniqueName": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
         "projectName": "AdvancedFileViewer",
-        "projectPath": "C:\\Users\\Brandin Goldsberry\\source\\repos\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
+        "projectPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
         "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Brandin Goldsberry\\source\\repos\\AdvancedFileViewer\\obj\\",
+        "outputPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
