@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedFileViewer", "AdvancedFileViewer.csproj", "{2567DED7-03CC-40DD-A116-3E0FC3BA3804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixabayAPI", "PixaBayAPI\ClassLibrary1\PixabayAPI.csproj", "{3301A218-8CF4-4A6B-96CF-A59C046C055E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PixabayAPI", "PixaBayAPI\ClassLibrary1\PixabayAPI.csproj", "{3301A218-8CF4-4A6B-96CF-A59C046C055E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageAPI", "ImageAPI\ImageAPI\ImageAPI.pyproj", "{16F393DC-6B67-443C-B9F7-CFE0E796900E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,16 @@ Global
 		{3301A218-8CF4-4A6B-96CF-A59C046C055E}.Release|x64.Build.0 = Release|Any CPU
 		{3301A218-8CF4-4A6B-96CF-A59C046C055E}.Release|x86.ActiveCfg = Release|Any CPU
 		{3301A218-8CF4-4A6B-96CF-A59C046C055E}.Release|x86.Build.0 = Release|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Release|x64.ActiveCfg = Release|Any CPU
+		{16F393DC-6B67-443C-B9F7-CFE0E796900E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

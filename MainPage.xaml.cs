@@ -26,5 +26,50 @@ namespace AdvancedFileViewer
         {
             this.InitializeComponent();
         }
+
+        public static void OnSort()
+        {
+
+        }
+
+        public static void OnFetch()
+        {
+
+        }
+
+        public static void OnQuery()
+        {
+
+        }
+
+        public static void OnNewFile()
+        {
+
+        }
+
+        public static void OnSaveQuery()
+        {
+
+        }
+
+        public static void OnLoadQuery()
+        {
+
+        }
+
+        public static void OnProgramExit()
+        {
+
+        }
+
+        public static void OnProgramOpen()
+        {
+
+        }
+
+        public static void OnEditImage()
+        {
+
+        }
     }
 }
