@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Managers\DirectoryManager.cs" />
     <Compile Include="Managers\QueryManager.cs" />
+    <Compile Include="Models\Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
