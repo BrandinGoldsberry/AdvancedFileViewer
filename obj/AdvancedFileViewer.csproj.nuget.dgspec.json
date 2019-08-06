@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {}
+    "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {
+    "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
+        "projectUniqueName": "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
         "projectName": "AdvancedFileViewer",
-        "projectPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
-        "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\obj\\",
+        "projectPath": "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
+        "packagesPath": "C:\\Users\\Wesley Monk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Brandin Goldsberry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Wesley Monk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

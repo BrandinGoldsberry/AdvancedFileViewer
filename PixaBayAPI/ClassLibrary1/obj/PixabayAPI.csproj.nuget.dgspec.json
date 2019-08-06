@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {}
+    "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
+    "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
         "projectName": "PixabayAPI",
-        "projectPath": "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
-        "packagesPath": "C:\\Users\\William Sunderland\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\William Sunderland\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
+        "projectPath": "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+        "packagesPath": "C:\\Users\\Wesley Monk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Wesley Monk\\Documents\\GitHub\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\William Sunderland\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Wesley Monk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
