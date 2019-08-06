@@ -123,7 +123,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Managers\DirectoryManager.cs" />
+    <Compile Include="Managers\FileManager.cs" />
+    <Compile Include="Managers\ImageManipulation.cs" />
     <Compile Include="Managers\QueryManager.cs" />
+    <Compile Include="Models\Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
