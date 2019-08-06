@@ -56,5 +56,20 @@ namespace AdvancedFileViewer
         {
 
         }
+
+        public static void OnProgramExit()
+        {
+
+        }
+
+        public static void OnProgramOpen()
+        {
+
+        }
+
+        public static void OnEditImage()
+        {
+
+        }
     }
 }
