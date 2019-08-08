@@ -12,39 +12,23 @@ namespace AdvancedFileViewer.Managers
     {
         public static string QueryFilePath;
 
-        public static void SearchByTag(params string[] Tags)
+        /// <summary>
+        /// Taking in a query saving it based on what attributes it has been given as well as how it was searched.
+        /// </summary>
+        /// <param name="attributes"></param>
+        /// <param name="searchBy"></param>
+        public static void SaveQuery(EntryColumn attributes, string searchBy)
         {
-
+            //saves file and splits different queries by "|" to sort later
+            File.AppendAllText("queries.txt", attributes + "," + searchBy + "|");
         }
 
-        public static void SearchByEntry(Entry e)
+        public static string LoadQuery()
         {
-
-        }
-
-        public static void SearchByExtension(string Extension)
-        {
-
-        }
-
-        public static void SearchByIsLocal(bool IsLocal)
-        {
-
-        }
-
-        public static void SearchByName(string Name)
-        {
-
-        }
-
-        public static void SearchBySize(int ExactSize)
-        {
-
-        }
-
-        public static void SearchBySize(int MinSize, int MaxSize)
-        {
-
+            //opens file
+            string fileText = File.ReadAllText("queries.txt");
+            //returns string encompassing file contents
+            return fileText;
         }
 
     }
