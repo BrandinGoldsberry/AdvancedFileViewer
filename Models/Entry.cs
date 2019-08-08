@@ -30,24 +30,31 @@ namespace AdvancedFileViewer.Models
         /// <summary>
         /// How many bytes the image contains
         /// </summary>
-        public int FileSize { get; }
+        public long FileSize { get; }
         /// <summary>
         /// The two dimensions of the file (Only cares about first two entries)
         /// </summary>
-        public int[] ImageSize { get; }
+        public long Height { get; set; }
+        public long Width { get; set; }
         /// <summary>
         /// Tags that were applied to the image (May be user defined)
         /// </summary>
         public string[] Tags { get; set; }
 
-        public Entry(string Path, string Name, bool IsLocal, int FileSize, int[] ImageSize, string Searched)
+        public Entry(string Path, string Name, bool IsLocal, long FileSize, string Searched, long Height, long Width)
         {
             this.Path = Path;
             this.Name = Name;
             this.IsLocal = IsLocal;
             this.Searched = Searched;
+            this.Height = Height;
+            this.Width = Width;
             this.FileSize = FileSize;
-            this.ImageSize = ImageSize;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}, {Path}, {IsLocal}, {FileSize} bytes, Keyword: {Searched}, H: {Height}, W: {Width}";
         }
     }
 }
