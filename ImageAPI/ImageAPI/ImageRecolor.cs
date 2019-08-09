@@ -17,7 +17,7 @@ namespace ImageAPI
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The entension of the image</param>
-        public static void LoadImage(string path, string name, string extension
+        public static void LoadImage(string path, string name, string extension)
         {
             string img_path = path + name + extension;
 
