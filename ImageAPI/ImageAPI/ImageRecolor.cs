@@ -11,22 +11,44 @@ namespace ImageAPI
 {
     public class ImageRecolor
     {
-
-        public static void LoadImage(string path, string name, string extension)
+        /// <summary>
+        /// This method loads a signle image
+        /// </summary>
+        /// <param name="path">The directory to the image</param>
+        /// <param name="name">The name of the image</param>
+        /// <param name="extension">The entension of the image</param>
+        public static void LoadImage(string path, string name, string extension
         {
             string img_path = path + name + extension;
+
+            //Creates a bitmap version of the image to be easier to modify
             Bitmap bmp = new Bitmap(img_path);
+
             RGBRecolor(bmp, path, name, extension);
             GrayscaleRecolor(bmp, path, name, extension);
             //Image myImg = Image.FromFile(path + name + extension);
             //SaveImage(myImg, path, name, extension);
         }
 
+        /// <summary>
+        /// This method saves the image that is passed in 
+        /// </summary>
+        /// <param name="img">The image that is being saved</param>
+        /// <param name="path">The directory to the image</param>
+        /// <param name="name">The name of the image</param>
+        /// <param name="extension">The extension of the image</param>
         public static void SaveImage(Image img, string path, string name, string extension)
         {
             img.Save(path + name + "_copy" + extension);
         }
 
+        /// <summary>
+        /// This method recolors the image to the user's RGB values
+        /// </summary>
+        /// <param name="bmp">The image being modified to the user's specifications</param>
+        /// <param name="path">The directory to the image</param>
+        /// <param name="name">The name of the image</param>
+        /// <param name="extension">The extension of the image</param>
         public static void RGBRecolor(Bitmap bmp, string path, string name, string extension)
         {
             int width = bmp.Width;
@@ -56,8 +78,16 @@ namespace ImageAPI
             SaveImage(bbmp, path, name + "_blue", extension);
         }
 
+        /// <summary>
+        /// This method recolors the image to grayscale
+        /// </summary>
+        /// <param name="bmp">The image being modified to grayscale</param>
+        /// <param name="path">The directory to the image</param>
+        /// <param name="name">The name of the image</param>
+        /// <param name="extension">The extension of the image</param>
         public static void GrayscaleRecolor(Bitmap bmp, string path, string name, string extension)
         {
+            //A bitmap variable that uses the passed in bitmap image to be grayscaled
             Bitmap d = new Bitmap(bmp.Width, bmp.Height);
 
             for (int i = 0; i < bmp.Width; i++)
