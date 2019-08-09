@@ -16,9 +16,8 @@ namespace ImageAPI
         {
             string img_path = path + name + extension;
             Bitmap bmp = new Bitmap(img_path);
-            Image img = Image.FromFile(img_path);
-            RGBRecolor(bmp, img, path, name, extension);
-            GrayscaleRecolor(bmp, img, path, name, extension);
+            RGBRecolor(bmp, path, name, extension);
+            GrayscaleRecolor(bmp, path, name, extension);
             //Image myImg = Image.FromFile(path + name + extension);
             //SaveImage(myImg, path, name, extension);
         }
@@ -28,7 +27,7 @@ namespace ImageAPI
             img.Save(path + name + "_copy" + extension);
         }
 
-        public static void RGBRecolor(Bitmap bmp, Image img, string path, string name, string extension)
+        public static void RGBRecolor(Bitmap bmp, string path, string name, string extension)
         {
             int width = bmp.Width;
             int height = bmp.Height;
@@ -57,7 +56,7 @@ namespace ImageAPI
             SaveImage(bbmp, path, name + "_blue", extension);
         }
 
-        public static void GrayscaleRecolor(Bitmap bmp, Image img, string path, string name, string extension)
+        public static void GrayscaleRecolor(Bitmap bmp, string path, string name, string extension)
         {
             Bitmap d = new Bitmap(bmp.Width, bmp.Height);
 
