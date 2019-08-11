@@ -12,25 +12,6 @@ namespace ImageAPI
     public class ImageRecolor
     {
         /// <summary>
-        /// This method loads a signle image
-        /// </summary>
-        /// <param name="path">The directory to the image</param>
-        /// <param name="name">The name of the image</param>
-        /// <param name="extension">The entension of the image</param>
-        public static void LoadImage(string path, string name, string extension)
-        {
-            string img_path = path + name + extension;
-
-            //Creates a bitmap version of the image to be easier to modify
-            Bitmap bmp = new Bitmap(img_path);
-
-            RGBRecolor(bmp, path, name, extension);
-            GrayscaleRecolor(bmp, path, name, extension);
-            //Image myImg = Image.FromFile(path + name + extension);
-            //SaveImage(myImg, path, name, extension);
-        }
-
-        /// <summary>
         /// This method saves the image that is passed in 
         /// </summary>
         /// <param name="img">The image that is being saved</param>
@@ -44,18 +25,20 @@ namespace ImageAPI
 
         /// <summary>
         /// This method recolors the image to the user's RGB values
+        /// and returns the new bitmap to the user
         /// </summary>
         /// <param name="bmp">The image being modified to the user's specifications</param>
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The extension of the image</param>
-        public static void RGBRecolor(Bitmap bmp, string path, string name, string extension)
+        /// <param name="redVal">The user's specified red value</param>
+        /// <param name="greenVal">The user's specified green value</param>
+        /// <param name="blueVal">The user's specified blue value</param>
+        public static Bitmap RGBRecolor(Bitmap bmp, string path, string name, string extension, byte redVal, byte greenVal, byte blueVal)
         {
             int width = bmp.Width;
             int height = bmp.Height;
-            Bitmap rbmp = new Bitmap(bmp);
-            Bitmap gbmp = new Bitmap(bmp);
-            Bitmap bbmp = new Bitmap(bmp);
+            Bitmap nbmp = new Bitmap(bmp);
 
             for (int y = 0; y < height; y++)
             {
@@ -63,29 +46,22 @@ namespace ImageAPI
                 {
                     Color p = bmp.GetPixel(x, y);
                     int a = p.A;
-                    int r = p.R;
-                    int g = p.G;
-                    int b = p.B;
 
-                    rbmp.SetPixel(x, y, Color.FromArgb(a, r, 0, 0));
-                    gbmp.SetPixel(x, y, Color.FromArgb(a, 0, g, 0));
-                    bbmp.SetPixel(x, y, Color.FromArgb(a, 0, 0, b));
+                    nbmp.SetPixel(x, y, Color.FromArgb(a, redVal, greenVal, blueVal));
                 }
             }
-
-            SaveImage(rbmp, path, name + "_red", extension);
-            SaveImage(gbmp, path, name + "_green", extension);
-            SaveImage(bbmp, path, name + "_blue", extension);
+            return nbmp;
         }
 
         /// <summary>
         /// This method recolors the image to grayscale
+        /// and returns the new bitmap to the user
         /// </summary>
         /// <param name="bmp">The image being modified to grayscale</param>
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The extension of the image</param>
-        public static void GrayscaleRecolor(Bitmap bmp, string path, string name, string extension)
+        public static Bitmap GrayscaleRecolor(Bitmap bmp, string path, string name, string extension)
         {
             //A bitmap variable that uses the passed in bitmap image to be grayscaled
             Bitmap d = new Bitmap(bmp.Width, bmp.Height);
@@ -100,8 +76,7 @@ namespace ImageAPI
                     d.SetPixel(i, x, nc);
                 }
             }
-
-            SaveImage(d, path, name + "_gray", extension);
+            return d;
         }
     }
 }
