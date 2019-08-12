@@ -11,6 +11,21 @@ namespace ImageAPI
 {
     public class ImageRecolor
     {
+
+        /// <summary>
+        /// This method loads a signle image
+        /// </summary>
+        /// <param name="path">The directory to the image</param>
+        /// <param name="name">The name of the image</param>
+        /// <param name="extension">The entension of the image</param>
+        public static Bitmap LoadImage(string path, string name, string extension)
+        {
+            string img_path = path + name + extension;
+
+            //Creates a bitmap version of the image and returns it to the user
+            return new Bitmap(img_path);
+        }
+
         /// <summary>
         /// This method saves the image that is passed in 
         /// </summary>
@@ -20,7 +35,7 @@ namespace ImageAPI
         /// <param name="extension">The extension of the image</param>
         public static void SaveImage(Image img, string path, string name, string extension)
         {
-            img.Save(path + name + "_copy" + extension);
+            img.Save(path + name + extension);
         }
 
         /// <summary>
@@ -34,7 +49,7 @@ namespace ImageAPI
         /// <param name="redVal">The user's specified red value</param>
         /// <param name="greenVal">The user's specified green value</param>
         /// <param name="blueVal">The user's specified blue value</param>
-        public static Bitmap RGBRecolor(Bitmap bmp, string path, string name, string extension, byte redVal, byte greenVal, byte blueVal)
+        public static Bitmap RGBRecolor(Bitmap bmp, byte redVal, byte greenVal, byte blueVal)
         {
             int width = bmp.Width;
             int height = bmp.Height;
@@ -47,7 +62,11 @@ namespace ImageAPI
                     Color p = bmp.GetPixel(x, y);
                     int a = p.A;
 
-                    nbmp.SetPixel(x, y, Color.FromArgb(a, redVal, greenVal, blueVal));
+                    int redPix = (redVal + nbmp.GetPixel(x, y).R) / 2;
+                    int greenPix = (greenVal + nbmp.GetPixel(x, y).G) / 2;
+                    int bluePix = (blueVal + nbmp.GetPixel(x, y).B) / 2;
+
+                    nbmp.SetPixel(x, y, Color.FromArgb(a, redPix, greenPix, bluePix));
                 }
             }
             return nbmp;
@@ -61,7 +80,7 @@ namespace ImageAPI
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The extension of the image</param>
-        public static Bitmap GrayscaleRecolor(Bitmap bmp, string path, string name, string extension)
+        public static Bitmap GrayscaleRecolor(Bitmap bmp)
         {
             //A bitmap variable that uses the passed in bitmap image to be grayscaled
             Bitmap d = new Bitmap(bmp.Width, bmp.Height);
@@ -78,5 +97,21 @@ namespace ImageAPI
             }
             return d;
         }
+
+        /// <summary>
+        /// This method resizes an image the user passes in
+        /// and then returns it to the user
+        /// </summary>
+        /// <param name="imgResize">The image to be resized</param>
+        /// <param name="width">The width of the imageto be resized</param>
+        /// <param name="height">the height of the imageto be resized</param>
+        /// <returns></returns>
+        public static Bitmap ResizeImage(Image imgResize, int width, int height)
+        {
+            Size size = new Size(width, height);
+            return new Bitmap(imgResize, size);
+        }
+
+
     }
 }
