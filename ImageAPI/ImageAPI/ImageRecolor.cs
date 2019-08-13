@@ -18,13 +18,13 @@ namespace ImageAPI
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The entension of the image</param>
-        public static Bitmap LoadImage(string path, string name, string extension)
-        {
-            string img_path = path + name + extension;
+        //public static Bitmap LoadImage(string path, string name, string extension)
+        //{
+        //    string img_path = path + name + extension;
 
-            //Creates a bitmap version of the image and returns it to the user
-            return new Bitmap(img_path);
-        }
+        //    //Creates a bitmap version of the image and returns it to the user
+        //    return new Bitmap(img_path);
+        //}
 
         /// <summary>
         /// This method saves the image that is passed in 
@@ -33,7 +33,7 @@ namespace ImageAPI
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The extension of the image</param>
-        public static void SaveImage(Image img, string path, string name, string extension)
+        private static void SaveImage(Image img, string path, string name, string extension)
         {
             img.Save(path + name + extension);
         }
@@ -49,27 +49,30 @@ namespace ImageAPI
         /// <param name="redVal">The user's specified red value</param>
         /// <param name="greenVal">The user's specified green value</param>
         /// <param name="blueVal">The user's specified blue value</param>
-        public static Bitmap RGBRecolor(Bitmap bmp, byte redVal, byte greenVal, byte blueVal)
+        public static void RGBRecolor(string path, string name, string extension, string newName, byte redVal, byte greenVal, byte blueVal)
         {
+            string img_path = path + name + extension;
+            Bitmap bmp = new Bitmap(img_path);
             int width = bmp.Width;
             int height = bmp.Height;
-            Bitmap nbmp = new Bitmap(bmp);
-
-            for (int y = 0; y < height; y++)
+            using (Bitmap nbmp = new Bitmap(bmp))
             {
-                for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
                 {
-                    Color p = bmp.GetPixel(x, y);
-                    int a = p.A;
+                    for (int x = 0; x < width; x++)
+                    {
+                        Color p = bmp.GetPixel(x, y);
+                        int a = p.A;
 
-                    int redPix = (redVal + nbmp.GetPixel(x, y).R) / 2;
-                    int greenPix = (greenVal + nbmp.GetPixel(x, y).G) / 2;
-                    int bluePix = (blueVal + nbmp.GetPixel(x, y).B) / 2;
+                        int redPix = (redVal + nbmp.GetPixel(x, y).R) / 2;
+                        int greenPix = (greenVal + nbmp.GetPixel(x, y).G) / 2;
+                        int bluePix = (blueVal + nbmp.GetPixel(x, y).B) / 2;
 
-                    nbmp.SetPixel(x, y, Color.FromArgb(a, redPix, greenPix, bluePix));
+                        nbmp.SetPixel(x, y, Color.FromArgb(a, redPix, greenPix, bluePix));
+                    }
                 }
+                SaveImage(nbmp, path, newName, extension);
             }
-            return nbmp;
         }
 
         /// <summary>
@@ -80,8 +83,10 @@ namespace ImageAPI
         /// <param name="path">The directory to the image</param>
         /// <param name="name">The name of the image</param>
         /// <param name="extension">The extension of the image</param>
-        public static Bitmap GrayscaleRecolor(Bitmap bmp)
+        public static void GrayscaleRecolor(string path, string name, string extension, string newName)
         {
+            string img_path = path + name + extension;
+            Bitmap bmp = new Bitmap(img_path);
             //A bitmap variable that uses the passed in bitmap image to be grayscaled
             Bitmap d = new Bitmap(bmp.Width, bmp.Height);
 
@@ -95,7 +100,7 @@ namespace ImageAPI
                     d.SetPixel(i, x, nc);
                 }
             }
-            return d;
+            SaveImage(d, path, newName, extension);
         }
 
         /// <summary>
@@ -106,12 +111,15 @@ namespace ImageAPI
         /// <param name="width">The width of the imageto be resized</param>
         /// <param name="height">the height of the imageto be resized</param>
         /// <returns></returns>
-        public static Bitmap ResizeImage(Image imgResize, int width, int height)
+        public static void ResizeImage(string path, string name, string extension, string newName, int width, int height)
         {
             Size size = new Size(width, height);
-            return new Bitmap(imgResize, size);
+            string img_path = path + name + extension;
+            using (Bitmap bmp = new Bitmap(img_path))
+            {
+                Bitmap reSized = new Bitmap(bmp, size);
+                SaveImage(reSized, path, newName, extension);
+            }
         }
-
-
     }
 }
