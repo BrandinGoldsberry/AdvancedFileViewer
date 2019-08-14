@@ -163,9 +163,25 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>5.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.2</Version>
     </PackageReference>
+    <PackageReference Include="System.Drawing.Common">
+      <Version>4.5.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ImageAPI\ImageAPI\ImageAPI.csproj">
+      <Project>{e45240b2-27f4-4d47-8db7-f509f23cc036}</Project>
+      <Name>ImageAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="PixaBayAPI\ClassLibrary1\PixabayAPI.csproj">
+      <Project>{3301a218-8cf4-4a6b-96cf-a59c046c055e}</Project>
+      <Name>PixabayAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

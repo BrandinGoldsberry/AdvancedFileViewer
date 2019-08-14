@@ -10,7 +10,7 @@ using Microsoft.Data.Sqlite;
 
 namespace AdvancedFileViewer.Managers
 {
-    public enum EntryColumn { Path, Name, IsLocal, FileSize, Searched, Height, Width }
+    public enum EntryColumn { id, Name, IsLocal, Searched, FileSize, Height, Width, Path }
 
     public class DatabaseManager
     {
@@ -33,7 +33,9 @@ namespace AdvancedFileViewer.Managers
                     SqliteDataReader data = sqliteCommand.ExecuteReader();
                     while (data.Read())
                     {
-                        entries.Add(new Entry((string)data["Path"], (string)data["Name"], (long)data["IsLocal"] == 1, (long)data["FileSize"], (string)data["Searched"], (long)data["Height"], (long)data["Width"]));
+                        Entry toAdd = new Entry((string)data["Path"], (string)data["Name"], (long)data["IsLocal"] == 1, ulong.Parse((string)data["FileSize"]), (string)data["Searched"], (long)data["Height"], (long)data["Width"]);
+                        toAdd.ID = (long)data["id"];
+                        entries.Add(toAdd);
                     }
                     db.Close();
                 }
@@ -56,7 +58,7 @@ namespace AdvancedFileViewer.Managers
                 {
                     db.Open();
 
-                    string tableCommand = $"INSERT INTO Images (Name, Path, IsLocal, Searched, Height, Width, FileSize) VALUES ({'"' + e.Name + '"'}, {'"' + e.Path + '"'}, {(e.IsLocal ? 1 : 0)}, {'"' + e.Searched + '"'}, {e.Height}, {e.Width}, {e.FileSize})";
+                    string tableCommand = $"INSERT INTO Images (Name, Path, IsLocal, Searched, Height, Width, FileSize) VALUES ({'"' + e.Name + '"'}, {'"' + e.Path + '"'}, {(e.IsLocal ? 1 : 0)}, {'"' + e.Searched + '"'}, {e.Height}, {e.Width}, {e.FileSize.ToString()})";
 
                     SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);
 
@@ -82,7 +84,7 @@ namespace AdvancedFileViewer.Managers
                 {
                     db.Open();
 
-                    string tableCommand = $"DELETE FROM Images WHERE Name = {'"' + e.Name + '"'} AND Path = {'"' + e.Path + '"'} AND IsLocal = {(e.IsLocal ? 1 : 0)} and Searched = {'"' + e.Searched + '"'} and Height = {e.Height} and Width = {e.Width} and FileSize = {e.FileSize}";
+                    string tableCommand = $"DELETE FROM Images WHERE Name = {'"' + e.Name + '"'} AND Path = {'"' + e.Path + '"'} AND IsLocal = {(e.IsLocal ? 1 : 0)} and Searched = {'"' + e.Searched + '"'} and Height = {e.Height} and Width = {e.Width} and FileSize = {e.FileSize.ToString()}";
 
                     SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);
 
@@ -108,13 +110,13 @@ namespace AdvancedFileViewer.Managers
                 {
                     db.Open();
 
-                    string tableCommand = $"DELETE FROM Images WHERE Name = {'"' + Old.Name + '"'} AND Path = {'"' + Old.Path + '"'} AND IsLocal = {(Old.IsLocal ? 1 : 0)} and Searched = {'"' + Old.Searched + '"'} and Height = {Old.Height} and Width = {Old.Width} and FileSize = {Old.FileSize}";
+                    string tableCommand = $"DELETE FROM Images WHERE Name = {'"' + Old.Name + '"'} AND Path = {'"' + Old.Path + '"'} AND IsLocal = {(Old.IsLocal ? 1 : 0)} and Searched = {'"' + Old.Searched + '"'} and Height = {Old.Height} and Width = {Old.Width} and FileSize = {Old.FileSize.ToString()}";
 
                     SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);
 
                     var data = sqliteCommand.ExecuteReader();
 
-                    tableCommand = $"INSERT INTO Images (Name, Path, IsLocal, Searched, Height, Width, FileSize) VALUES ({'"' + New.Name + '"'}, {'"' + New.Path + '"'}, {(New.IsLocal ? 1 : 0)}, {'"' + New.Searched + '"'}, {New.Height}, {New.Width}, {New.FileSize})";
+                    tableCommand = $"INSERT INTO Images (Name, Path, IsLocal, Searched, Height, Width, FileSize) VALUES ({'"' + New.Name + '"'}, {'"' + New.Path + '"'}, {(New.IsLocal ? 1 : 0)}, {'"' + New.Searched + '"'}, {New.Height}, {New.Width}, {New.FileSize.ToString()})";
 
                     sqliteCommand = new SqliteCommand(tableCommand, db);
 
@@ -150,7 +152,7 @@ namespace AdvancedFileViewer.Managers
                     //string tableCommand = $"SELECT * FROM Images WHERE Images.Name = {'"' + ImageName + '"'}";
                     string tableCommand = null;
                     long searchInt = 0;
-                    if (long.TryParse(Query, out searchInt))
+                    if (long.TryParse(Query, out searchInt) && Column != EntryColumn.FileSize)
                     {
                         tableCommand = $"SELECT * FROM Images WHERE {Column.ToString()} = {searchInt}";
                     }
@@ -164,7 +166,7 @@ namespace AdvancedFileViewer.Managers
                     SqliteDataReader data = sqliteCommand.ExecuteReader();
                     while (data.Read())
                     {
-                        entries.Add(new Entry((string)data["Path"], (string)data["Name"], (long)data["IsLocal"] == 1, (long)data["FileSize"], (string)data["Searched"], (long)data["Height"], (long)data["Width"]));
+                        entries.Add(new Entry((string)data["Path"], (string)data["Name"], (long)data["IsLocal"] == 1, ulong.Parse((string)data["FileSize"]), (string)data["Searched"], (long)data["Height"], (long)data["Width"]));
                     }
                     db.Close();
                 }
@@ -192,7 +194,7 @@ namespace AdvancedFileViewer.Managers
 	                                    Searched  TEXT,
 	                                    Height    INTEGER NOT NULL,
 	                                    Width INTEGER NOT NULL,
-	                                    FileSize  INTEGER NOT NULL
+	                                    FileSize  TEXT NOT NULL
                                         ); ";
 
                 SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);
