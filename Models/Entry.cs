@@ -11,6 +11,7 @@ namespace AdvancedFileViewer.Models
     /// </summary>
     public class Entry
     {
+        public long ID { get; set; }
         /// <summary>
         /// Path of file, web or local
         /// </summary>
@@ -30,7 +31,7 @@ namespace AdvancedFileViewer.Models
         /// <summary>
         /// How many bytes the image contains
         /// </summary>
-        public long FileSize { get; }
+        public ulong FileSize { get; }
         /// <summary>
         /// The two dimensions of the file (Only cares about first two entries)
         /// </summary>
@@ -41,7 +42,7 @@ namespace AdvancedFileViewer.Models
         /// </summary>
         public string[] Tags { get; set; }
 
-        public Entry(string Path, string Name, bool IsLocal, long FileSize, string Searched, long Height, long Width)
+        public Entry(string Path, string Name, bool IsLocal, ulong FileSize, string Searched, long Height, long Width)
         {
             this.Path = Path;
             this.Name = Name;
@@ -52,9 +53,14 @@ namespace AdvancedFileViewer.Models
             this.FileSize = FileSize;
         }
 
+        public string[] ToStringArr()
+        {
+            return new string[] {ID.ToString(), Name, IsLocal.ToString(), Searched, FileSize.ToString(), Height.ToString(), Width.ToString() };
+        }
+
         public override string ToString()
         {
-            return $"{Name}, {Path}, {IsLocal}, {FileSize} bytes, Keyword: {Searched}, H: {Height}, W: {Width}";
+            return $"{ID}, {Name}, {FileSize} bytes, Keyword: {Searched}, H: {Height}, W: {Width}";
         }
     }
 }

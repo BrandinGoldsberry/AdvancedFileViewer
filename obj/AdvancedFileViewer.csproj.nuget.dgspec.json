@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {}
+    "C:\\New folder\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {
+    "C:\\New folder\\AdvancedFileViewer\\AdvancedFileViewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
+        "projectUniqueName": "C:\\New folder\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
         "projectName": "AdvancedFileViewer",
-        "projectPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
+        "projectPath": "C:\\New folder\\AdvancedFileViewer\\AdvancedFileViewer.csproj",
         "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\obj\\",
+        "outputPath": "C:\\New folder\\AdvancedFileViewer\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -22,24 +22,47 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "uap10.0.17763"
+          "uap10.0.16299"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "uap10.0.17763": {
-            "projectReferences": {}
+          "uap10.0.16299": {
+            "projectReferences": {
+              "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj": {
+                "projectPath": "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj"
+              },
+              "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
+                "projectPath": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj"
+              }
+            }
           }
         }
       },
       "frameworks": {
-        "uap10.0.17763": {
+        "uap10.0.16299": {
           "dependencies": {
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
             "Microsoft.NETCore.UniversalWindowsPlatform": {
               "target": "Package",
               "version": "[6.2.8, )"
+            },
+            "Microsoft.Toolkit.Uwp.UI.Controls": {
+              "target": "Package",
+              "version": "[5.1.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.5.1, )"
             }
           },
           "imports": [
@@ -70,6 +93,118 @@
         },
         "win10-x86-aot": {
           "#import": []
+        }
+      }
+    },
+    "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj",
+        "projectName": "ImageAPI",
+        "projectPath": "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj",
+        "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
+        "outputPath": "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Brandin Goldsberry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+        "projectName": "PixabayAPI",
+        "projectPath": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+        "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
+        "outputPath": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Brandin Goldsberry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
         }
       }
     }

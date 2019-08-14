@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {}
+    "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
+    "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+        "projectUniqueName": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
         "projectName": "PixabayAPI",
-        "projectPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
+        "projectPath": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj",
         "packagesPath": "C:\\Users\\Brandin Goldsberry\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Brandin Goldsberry\\IntroToWeb\\Weather\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
+        "outputPath": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
             }
           },
           "imports": [
