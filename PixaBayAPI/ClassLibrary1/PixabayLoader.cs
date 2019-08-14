@@ -10,7 +10,7 @@ namespace PixabayAPI
     public class PixabayLoader
     {
         private static string host_site = "pixabay.com";
-        private static string site_path = "api/?key=13251626-9e47e152399234e0e6b4b9d73";
+        private static string site_path = "api/";
 
         /// <summary>
         /// The URL Builder takes in a search string, breaks the string into individual search terms by splitting on all space characters
@@ -55,7 +55,7 @@ namespace PixabayAPI
             ur.Query = searchTerms;
             wrGETURL = WebRequest.Create(ur.Uri);
 
-            Console.WriteLine("Var thing: " + ur.Uri);
+            Console.WriteLine("URI: " + ur.Uri);
 
             Stream objStream;
             objStream = wrGETURL.GetResponse().GetResponseStream();
