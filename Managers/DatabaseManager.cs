@@ -12,6 +12,17 @@ namespace AdvancedFileViewer.Managers
 {
     public enum EntryColumn { id, Name, IsLocal, Searched, FileSize, Height, Width, Path }
 
+    public class Query
+    {
+        public EntryColumn Column { get; set; }
+        public string Value { get; set; }
+
+        public override string ToString()
+        {
+            return Column.ToString() + " " + Value;
+        }
+    }
+
     public class DatabaseManager
     {
 
@@ -178,6 +189,7 @@ namespace AdvancedFileViewer.Managers
             }
             return entries.ToArray();
         }
+       
 
         public static void ConnectToDatabase()
         {

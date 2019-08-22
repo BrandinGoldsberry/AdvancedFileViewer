@@ -14,6 +14,7 @@ namespace AdvancedFileViewer.Managers
 {
     public static class ImageFetch
     {
+
         public async static void GetPixaBayImage(string Search, bool download)
         {
             string search = PixabayLoader.searchTermBuilder(Search);
@@ -28,7 +29,7 @@ namespace AdvancedFileViewer.Managers
                     if(count == 0)
                         DatabaseManager.SaveNewEntry(new Entry(folder.Path+ "\\" + Search + ".jpg", Search + " (" + count.ToString() + ")" + ".jpg", true, (ulong)image.imageSize, Search, image.imageHeight, image.imageWidth));
                     else
-                        DatabaseManager.SaveNewEntry(new Entry(folder.Path+ "\\" + Search + " (" + count.ToString() + ")" + ".jpg", Search + " (" + count.ToString() + ")" + ".jpg", true, (ulong)image.imageSize, Search, image.imageHeight, image.imageWidth));
+                        DatabaseManager.SaveNewEntry(new Entry(folder.Path+ "\\" + Search + " (" + count.ToString() + ")" + ".jpg", Search + "(" + count.ToString() + ")" + ".jpg", true, (ulong)image.imageSize, Search, image.imageHeight, image.imageWidth));
                     Uri source = new Uri(image.LargeImageURL);
 
                     StorageFile destinationFile = await folder.CreateFileAsync(

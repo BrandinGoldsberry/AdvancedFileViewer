@@ -38,7 +38,7 @@ namespace AdvancedFileViewer.Managers
                     }
                     else
                     {
-                        tableCommand = $"CREATE VIEW IF NOT EXISTS {Column.ToString() + "_" + Query} AS SELECT * FROM Images WHERE {Column.ToString()} = {'"' + Query + '"'}";
+                        tableCommand = $"CREATE VIEW IF NOT EXISTS {"[" + Column.ToString() + "_" + Query + "]"} AS SELECT * FROM Images WHERE {Column.ToString()} = {'"' + Query + '"'}";
                     }
 
                     SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);
@@ -74,7 +74,7 @@ namespace AdvancedFileViewer.Managers
                     }
                     else
                     {
-                        tableCommand = $"SELECT * FROM {Column.ToString() + "_" + Query}";
+                        tableCommand = $"SELECT * FROM {"[" + Column.ToString() + "_" + Query + "]"}";
                     }
 
                     SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);
@@ -83,7 +83,7 @@ namespace AdvancedFileViewer.Managers
                     while (data.Read())
                     {
                         Entry toAdd = new Entry((string)data["Path"], (string)data["Name"], (long)data["IsLocal"] == 1, ulong.Parse((string)data["FileSize"]), (string)data["Searched"], (long)data["Height"], (long)data["Width"]);
-                        toAdd.ID = (int)data["id"];
+                        toAdd.ID = (long)data["id"];
                         entries.Add(toAdd);
                     }
                     db.Close();
@@ -97,10 +97,10 @@ namespace AdvancedFileViewer.Managers
             return entries.ToArray();
         }
 
-        public static string[] ListQueries()
+        public static Query[] ListQueries()
         {
             //saves file and splits different queries by "|" to sort later
-            List<string> entries = new List<string>();
+            List<Query> entries = new List<Query>();
             try
             {
                 using (SqliteConnection db =
@@ -117,7 +117,10 @@ namespace AdvancedFileViewer.Managers
                     SqliteDataReader data = sqliteCommand.ExecuteReader();
                     while(data.Read())
                     {
-                        entries.Add((string)data["name"]);
+                        Query toAdd = new Query();
+                        toAdd.Column = (EntryColumn)Enum.Parse(typeof(EntryColumn), ((string)data["name"]).Split("_")[0]);
+                        toAdd.Value = ((string)data["name"]).Split("_")[1];
+                        entries.Add(toAdd);
                     }
                 }
 

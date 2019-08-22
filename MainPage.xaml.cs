@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using AdvancedFileViewer.Managers;
-using ImageAPI;
 using PixabayAPI;
 using Windows.UI.ViewManagement;
 using Windows.ApplicationModel.Core;
@@ -28,15 +27,13 @@ using System.Drawing;
 
 namespace AdvancedFileViewer
 {
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private Entry NewImageEntry;
 
-        private StorageFolder editFolder;
+        private Entry NewImageEntry;
 
         public MainPage()
         {
@@ -62,7 +59,8 @@ namespace AdvancedFileViewer
         public void OnSaveQuery(object sender, RoutedEventArgs e)
         {
             QueryManager.SaveQuery((EntryColumn)qSelect.SelectedItem, qText.Text);
-            LoadQuery.Items.Add($"{qSelect.SelectedItem} {qText.Text}");
+            Query Q = new Query{ Column = (EntryColumn)qSelect.SelectedItem, Value = qText.Text };
+            LoadQuery.Items.Add(Q);
         }
 
         public void OnNewFile()
@@ -72,8 +70,8 @@ namespace AdvancedFileViewer
 
         public void OnLoadQuery()
         {
-            string selection = (string)LoadQuery.SelectedItem;
-            if(selection != null)
+            var selection = LoadQuery.SelectedValue;
+            if (selection != null)
             {
                 if (selection.Equals("All"))
                 {
@@ -83,10 +81,21 @@ namespace AdvancedFileViewer
                 }
                 else
                 {
-                    Entry[] entries = QueryManager.LoadQuery((EntryColumn)Enum.Parse(typeof(EntryColumn), selection.Split(" ")[0]), selection.Split(" ")[1]);
+                    Query q = (Query)LoadQuery.SelectedItem;
+                    Entry[] entries = QueryManager.LoadQuery(q.Column, q.Value);
                     FrameworkElement toAdd = DynamicTableConstructor.BuildRows(entries);
                     Table.Content = toAdd;
                 }
+            }
+
+            DeleteID.Items.Clear();
+            EditID.Items.Clear();
+
+            foreach (Entry en in DatabaseManager.GetEntries())
+            {
+                //EditID.Items.Add(e);
+                DeleteID.Items.Add(en);
+                EditID.Items.Add(en);
             }
         }
 
@@ -98,9 +107,9 @@ namespace AdvancedFileViewer
         public void OnProgramOpen()
         {
             LoadQuery.Items.Add("All");
-            foreach (string s in QueryManager.ListQueries())
+            foreach (Query s in QueryManager.ListQueries())
             {
-                LoadQuery.Items.Add(s.Replace("_", " "));
+                LoadQuery.Items.Add(s);
             }
             DynamicTableConstructor.OnRefresh();
             Table.Content = DynamicTableConstructor.BuildRows();
@@ -117,31 +126,37 @@ namespace AdvancedFileViewer
             qSelect.HorizontalAlignment = HorizontalAlignment.Left;
             qSelect.FontSize = 30;
 
-            EditType.Items.Add("Color Tint");
+            //EditType.Items.Add("Color Tint");
 
-            foreach(Entry e in DatabaseManager.GetEntries())
+            foreach (Entry e in DatabaseManager.GetEntries())
             {
-                EditID.Items.Add(e);
+                //EditID.Items.Add(e);
                 DeleteID.Items.Add(e);
+                EditID.Items.Add(e);
             }
         }
 
         public async void OnEditImage(object sender, RoutedEventArgs e)
         {
-            if((string)EditType.SelectedItem == "Color Tint")
-            {
+            Entry selected = (Entry)EditID.SelectedItem;
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.FileTypeFilter.Add("*");
 
-                Entry toColor = (Entry)EditID.SelectedItem;
-                ImageRecolor.RGBRecolor(toColor.Path, toColor.Name, ".jpg", toColor.Name + "_new", byte.Parse(((TextBox)FindName("RedEditValue")).Text), byte.Parse(((TextBox)FindName("GreenEditValue")).Text), byte.Parse(((TextBox)FindName("BlueEditValue")).Text));
+            StorageFile OpenFile = await StorageFile.GetFileFromPathAsync(selected.Path);
+            StorageFolder SaveFolder = await folderPicker.PickSingleFolderAsync();
 
-                StorageFile newImageSaved = await editFolder.GetFileAsync(((Entry)EditID.SelectedItem).Name + "_Tinted");
-                var imgProps = await newImageSaved.GetBasicPropertiesAsync();
-                var imgProps1 = await newImageSaved.Properties.GetImagePropertiesAsync();
-                NewImageEntry = new Entry(EditImagePath.Text, ((Entry)EditID.SelectedItem).Name + "_Tinted", true, imgProps.Size, null, imgProps1.Height, imgProps1.Width);
-                DatabaseManager.SaveNewEntry(NewImageEntry);
-                DynamicTableConstructor.OnRefresh();
-                OnLoadQuery();
-            }
+            StorageFile newFile = await ImageManipulation.RGBRecolor
+            (
+                OpenFile,
+                SaveFolder,
+                byte.Parse(((TextBox)FindName("RedEditValue")).Text),
+                byte.Parse(((TextBox)FindName("GreenEditValue")).Text),
+                byte.Parse(((TextBox)FindName("BlueEditValue")).Text)
+            );
+            //var props = await newFile.GetBasicPropertiesAsync();
+            //var imgProps = await newFile.Properties.GetImagePropertiesAsync();
+
+            //DatabaseManager.SaveNewEntry(new Entry(OpenFile.Path, selected.Name, true, props.Size, selected.Searched, imgProps.Height, imgProps.Width));
         }
 
         private void LoadQuery_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -178,15 +193,16 @@ namespace AdvancedFileViewer
         private void EditType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             EditInputs.Children.Clear();
-            if((string)EditType.SelectedItem == "Color Tint")
+            if (EditType.SelectedIndex == 0)
             {
                 EditInputs.Children.Add(new TextBlock()
                 {
                     Text = "Red Edit Value",
                 });
 
-                EditInputs.Children.Add(new TextBox() {
-                    Name="RedEditValue"
+                EditInputs.Children.Add(new TextBox()
+                {
+                    Name = "RedEditValue"
                 });
 
                 EditInputs.Children.Add(new TextBlock()
@@ -213,14 +229,6 @@ namespace AdvancedFileViewer
             }
         }
 
-        private async void EditImagePath_Click(object sender, RoutedEventArgs e)
-        {
-            var picker = new FolderPicker();
-            picker.FileTypeFilter.Add("*");
-            editFolder = await picker.PickSingleFolderAsync();
-            EditImagePath.Text = editFolder.Path;
-        }
-
         private async void ImageDelete_Click(object sender, RoutedEventArgs e)
         {
             Entry toDelete = DeleteID.SelectedValue as Entry;
@@ -234,6 +242,8 @@ namespace AdvancedFileViewer
         private void RefreshDatabase_Click(object sender, RoutedEventArgs e)
         {
             DynamicTableConstructor.OnRefresh();
+            OnLoadQuery();
         }
+
     }
 }

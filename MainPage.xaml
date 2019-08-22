@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
+
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid x:Name="TopLevel">
         <AppBar></AppBar>
@@ -25,30 +26,9 @@
                     <Button x:Name="RefreshDatabase" HorizontalAlignment = "Left" Content="Refresh Table" Click="RefreshDatabase_Click"/>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Header="Image Editor">
-                <StackPanel>
-                    <TextBlock Text="Select an edit type, and specify value" HorizontalAlignment="Left"/>
-                    <ComboBox x:Name="EditType" SelectionChanged="EditType_SelectionChanged">
-                        <ComboBox.Items>
-                            
-                        </ComboBox.Items>
-                    </ComboBox>
-                    <StackPanel x:Name="EditInputs" HorizontalAlignment="Left">
-                        
-                    </StackPanel>
-                    <TextBlock Text="Select Image from dropdown"  HorizontalAlignment="Left"/>
-                    <ComboBox x:Name="EditID" HorizontalAlignment = "Left">
-                        
-                    </ComboBox>
-                    <TextBlock Margin="5">Path of Image</TextBlock>
-                    <TextBox Margin="5" Width="300" x:Name="EditImagePath" HorizontalAlignment="Left"></TextBox>
-                    <Button x:Name="EditImagePathPick" HorizontalAlignment = "Left" Content="Select Save Image Path" Click="EditImagePath_Click"/>
-                    <Button x:Name="EditImage" HorizontalAlignment = "Left" Content="Edit Image" Click="OnEditImage"/>
-                </StackPanel>
-            </PivotItem>
             <PivotItem Header="Pixabay Image Fetch">
                 <StackPanel>
-                    <TextBlock Text="Select an edit type, and specify value" Height="50" HorizontalAlignment="Left" FontSize="30"/>
+                    <TextBlock Text="Enter a search Term" Height="50" HorizontalAlignment="Left" FontSize="30"/>
                     <TextBox x:Name="PixImageSearchName" Width = "300" HorizontalAlignment = "Left"/>
                     <CheckBox x:Name="PixDownloadSearched"/>
                     <Button x:Name="PixImageFetch" HorizontalAlignment = "Left" Content="Fetch Image" Click="OnFetch"/>
@@ -62,6 +42,25 @@
                     <TextBox Margin="5" Width="300" x:Name="NewImagePath"></TextBox>
                     <Button Margin="5" x:Name="NewImagePathPick" Click="NewImagePathPick_Click">Get Image Path</Button>
                     <Button Margin="5" x:Name="NewImageSave" Click="NewImageSave_Click">Save New Image</Button>
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Header="Edit Iamge">
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Margin="5">Edit Type</TextBlock>
+                    <ComboBox x:Name="EditType" HorizontalAlignment="Left" SelectionChanged="EditType_SelectionChanged">
+                        <ComboBoxItem Content="Color Tint"/>
+                    </ComboBox>
+                    <TextBlock Margin="5">Edit Type</TextBlock>
+                    <ComboBox x:Name="EditID" HorizontalAlignment="Left">
+                        
+                    </ComboBox>
+                    <StackPanel x:Name="EditInputs" HorizontalAlignment="Left">
+
+                    </StackPanel>
+                    <Button Margin="5" x:Name="EditImageSave" Click="OnEditImage">Save New Image</Button>
+                    <Image x:Name="Sam" Height="162" Width="224">
+                        
+                    </Image>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Delete Image">
