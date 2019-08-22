@@ -10,12 +10,13 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using System.IO.Compression;
 
 namespace AdvancedFileViewer
 {
     class ImageEdit
     {
-        private async void ReSize(uint width, uint length, List<string> loadExtenstionList, List<string> saveExtenstionList)
+        public async void ReSize(uint width, uint length, List<string> loadExtenstionList, List<string> saveExtenstionList)
         {
             FileOpenPicker fileOpenPicker = new FileOpenPicker
             {
@@ -102,6 +103,32 @@ namespace AdvancedFileViewer
                 }
             }
         }
+
+        public async void ZipContents(string zipName)
+        {
+            FolderPicker folderPicker = new FolderPicker
+            {
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+            };
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+
+            FolderPicker folderEnd = new FolderPicker
+            {
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+            };
+            folderEnd.FileTypeFilter.Add("*");
+            StorageFolder folder2 = await folderEnd.PickSingleFolderAsync();
+
+            SaveFolder(folder.Path, folder2.Path + "\\" + zipName + ".zip");
+        }
+
+        private void SaveFolder(string startDir, string zipPath)
+        {
+            var t = Task.Run(() => ZipFile.CreateFromDirectory(startDir, zipPath));
+            t.Wait();
+        }
+
     }
 }
 
