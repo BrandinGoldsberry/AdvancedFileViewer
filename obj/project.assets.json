@@ -583,13 +583,16 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
+        },
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         },
         "runtimeTargets": {
           "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {
@@ -606,19 +609,6 @@
           }
         }
       },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
-        },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
-        }
-      },
       "PixabayAPI/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -630,6 +620,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -1350,7 +1353,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
@@ -1360,19 +1363,9 @@
         },
         "native": {
           "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -1386,6 +1379,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -2107,7 +2113,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
@@ -2117,19 +2123,9 @@
         },
         "native": {
           "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -2143,6 +2139,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -2856,26 +2865,16 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         },
         "runtime": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -2889,6 +2888,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -3609,7 +3621,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
@@ -3619,19 +3631,9 @@
         },
         "native": {
           "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -3645,6 +3647,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -4366,7 +4381,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
@@ -4376,19 +4391,9 @@
         },
         "native": {
           "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -4402,6 +4407,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -5122,7 +5140,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
@@ -5132,19 +5150,9 @@
         },
         "native": {
           "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -5158,6 +5166,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     },
@@ -5879,7 +5900,7 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Win2D.uwp/1.21.0": {
+      "Win2D.uwp/1.23.0": {
         "type": "package",
         "compile": {
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
@@ -5889,19 +5910,9 @@
         },
         "native": {
           "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {}
-        }
-      },
-      "ImageAPI/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "System.Drawing.Common": "4.5.1"
         },
-        "compile": {
-          "bin/placeholder/ImageAPI.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ImageAPI.dll": {}
+        "build": {
+          "build/win10/Win2D.uwp.targets": {}
         }
       },
       "PixabayAPI/1.0.0": {
@@ -5915,6 +5926,19 @@
         },
         "runtime": {
           "bin/placeholder/PixabayAPI.dll": {}
+        }
+      },
+      "SafebooruAPI/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "compile": {
+          "bin/placeholder/SafebooruAPI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafebooruAPI.dll": {}
         }
       }
     }
@@ -10777,15 +10801,17 @@
         "version.txt"
       ]
     },
-    "Win2D.uwp/1.21.0": {
-      "sha512": "4ddgs6Mt4cDVOPcKE+gV02Rn8G9nhp8C9S94A/msxULD2ysq6Q/z3CmeyATJhJNVfhumWUaXzx0B3v39vB5A4Q==",
+    "Win2D.uwp/1.23.0": {
+      "sha512": "ft/qJRdLqVAX9pPNkgCDhTsf225VKh2CL4wcFv8bI0fDkN4NcKdEAvX7tEkSZnhMoSAjyer9eXUgHF7ICJpt8g==",
       "type": "package",
-      "path": "win2d.uwp/1.21.0",
+      "path": "win2d.uwp/1.23.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Win2d.githash.txt",
+        "build/Win2D.common.targets",
         "build/native/Win2D.uwp.targets",
+        "build/win10/Win2D.uwp.targets",
         "include/Microsoft.Graphics.Canvas.h",
         "include/Microsoft.Graphics.Canvas.native.h",
         "lib/uap10.0/Microsoft.Graphics.Canvas.winmd",
@@ -10793,30 +10819,31 @@
         "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll",
         "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll",
         "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll",
-        "win2d.uwp.1.21.0.nupkg.sha512",
+        "win2d.uwp.1.23.0.nupkg.sha512",
         "win2d.uwp.nuspec"
       ]
-    },
-    "ImageAPI/1.0.0": {
-      "type": "project",
-      "path": "ImageAPI/ImageAPI/ImageAPI.csproj",
-      "msbuildProject": "ImageAPI/ImageAPI/ImageAPI.csproj"
     },
     "PixabayAPI/1.0.0": {
       "type": "project",
       "path": "PixaBayAPI/ClassLibrary1/PixabayAPI.csproj",
       "msbuildProject": "PixaBayAPI/ClassLibrary1/PixabayAPI.csproj"
+    },
+    "SafebooruAPI/1.0.0": {
+      "type": "project",
+      "path": "SafebooruAPI/SafebooruAPI.csproj",
+      "msbuildProject": "SafebooruAPI/SafebooruAPI.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
-      "ImageAPI >= 1.0.0",
       "Microsoft.Data.Sqlite >= 2.2.6",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.8",
       "Microsoft.Toolkit.Uwp.UI.Controls >= 5.1.1",
       "Newtonsoft.Json >= 12.0.2",
       "PixabayAPI >= 1.0.0",
-      "System.Drawing.Common >= 4.5.1"
+      "SafebooruAPI >= 1.0.0",
+      "System.Drawing.Common >= 4.5.1",
+      "Win2D.uwp >= 1.23.0"
     ]
   },
   "packageFolders": {
@@ -10850,11 +10877,11 @@
       "frameworks": {
         "uap10.0.16299": {
           "projectReferences": {
-            "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj": {
-              "projectPath": "C:\\New folder\\AdvancedFileViewer\\ImageAPI\\ImageAPI\\ImageAPI.csproj"
-            },
             "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj": {
               "projectPath": "C:\\New folder\\AdvancedFileViewer\\PixaBayAPI\\ClassLibrary1\\PixabayAPI.csproj"
+            },
+            "C:\\New folder\\AdvancedFileViewer\\SafebooruAPI\\SafebooruAPI.csproj": {
+              "projectPath": "C:\\New folder\\AdvancedFileViewer\\SafebooruAPI\\SafebooruAPI.csproj"
             }
           }
         }
@@ -10882,6 +10909,10 @@
           "System.Drawing.Common": {
             "target": "Package",
             "version": "[4.5.1, )"
+          },
+          "Win2D.uwp": {
+            "target": "Package",
+            "version": "[1.23.0, )"
           }
         },
         "imports": [

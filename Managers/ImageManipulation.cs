@@ -16,7 +16,7 @@ namespace AdvancedFileViewer.Managers
 {
     public static class ImageManipulation
     {
-        public async static Task<StorageFile> RGBRecolor(StorageFile OpenFile, StorageFolder SaveFolder, byte redVal, byte greenVal, byte blueVal)
+        public async static Task<StorageFile> RGBRecolor(string FileType, StorageFile OpenFile, StorageFolder SaveFolder, byte redVal, byte greenVal, byte blueVal)
         {
             ImageProperties properties = await OpenFile.Properties.GetImagePropertiesAsync();
             WriteableBitmap bitmap = new WriteableBitmap((int)properties.Width, (int)properties.Height);
@@ -24,7 +24,19 @@ namespace AdvancedFileViewer.Managers
 
             using (IRandomAccessStream fileStream = await OpenFile.OpenAsync(FileAccessMode.Read))
             {
-                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(BitmapDecoder.JpegDecoderId, fileStream);
+                BitmapDecoder decoder = null;
+                switch (FileType)
+                {
+                    case "png":
+                        decoder = await BitmapDecoder.CreateAsync(BitmapDecoder.PngDecoderId, fileStream);
+                        break;
+                    case "jpeg":
+                        decoder = await BitmapDecoder.CreateAsync(BitmapDecoder.JpegDecoderId, fileStream);
+                        break;
+                    case "jpg":
+                        decoder = await BitmapDecoder.CreateAsync(BitmapDecoder.JpegDecoderId, fileStream);
+                        break;
+                }
                 // Scale image to appropriate size
                 BitmapTransform transform = new BitmapTransform()
                 {
@@ -42,7 +54,8 @@ namespace AdvancedFileViewer.Managers
                 // An array containing the decoded image data, which could be modified before being displayed
                 byte[] sourcePixels = pixelData.DetachPixelData();
 
-                NewFile = await SaveFolder.CreateFileAsync("RecoloredImage.jpg", CreationCollisionOption.GenerateUniqueName);
+
+                NewFile = await SaveFolder.CreateFileAsync("Altered_" + OpenFile.Name, CreationCollisionOption.GenerateUniqueName);
 
                 // Open a stream to copy the image contents to the WriteableBitmap's pixel buffer
                 using (Stream stream = bitmap.PixelBuffer.AsStream())
@@ -66,12 +79,12 @@ namespace AdvancedFileViewer.Managers
                     BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, newStream);
                     encoder.SetPixelData
                     (
-                        BitmapPixelFormat.Bgra8, 
-                        BitmapAlphaMode.Ignore, 
-                        (uint)bitmap.PixelWidth, 
-                        (uint)bitmap.PixelHeight, 
-                        96.0, 
-                        96.0, 
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Ignore,
+                        (uint)bitmap.PixelWidth,
+                        (uint)bitmap.PixelHeight,
+                        96.0,
+                        96.0,
                         sourcePixels
                     );
                     await encoder.FlushAsync();

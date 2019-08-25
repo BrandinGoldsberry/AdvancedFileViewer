@@ -87,19 +87,22 @@ namespace SafebooruAPI
 
             for (int i = 1; i < SBImageXMLs.Length - 1; i++)
             {
+
                 string[] imageData = SBImageXMLs[i].Split('|');
 
-                for (int o = 0; o < imageData.Length; o++)
+                if(imageData.Length >= 24)
                 {
-                    //Console.WriteLine(imageData[o]);
-                    imageData[o] = imageData[o].Substring(imageData[o].IndexOf('=') + 1);
+                    for (int o = 0; o < imageData.Length; o++)
+                    {
+                        //Console.WriteLine(imageData[o]);
+                        imageData[o] = imageData[o].Substring(imageData[o].IndexOf('=') + 1);
+                    }
+
+                    SBImage img = new SBImage(Int32.Parse(imageData[0]), imageData[2], imageData[4], Int32.Parse(imageData[5]), Int32.Parse(imageData[6]),
+                        imageData[9].Split(' '), Int32.Parse(imageData[10]), Int32.Parse(imageData[11]), Int32.Parse(imageData[14]), imageData[18]);
+
+                    images.Add(img);
                 }
-
-                SBImage img = new SBImage(Int32.Parse(imageData[0]), imageData[2], imageData[4], Int32.Parse(imageData[5]), Int32.Parse(imageData[6]),
-                    imageData[9].Split(' '), Int32.Parse(imageData[10]), Int32.Parse(imageData[11]), Int32.Parse(imageData[14]), imageData[18]);
-
-                images.Add(img);
-
             }
 
             return images;

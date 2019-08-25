@@ -36,9 +36,13 @@ namespace AdvancedFileViewer.Managers
                     {
                         tableCommand = $"CREATE VIEW IF NOT EXISTS {Column.ToString() + "_" + Query} AS SELECT * FROM Images WHERE {Column.ToString()} = {searchInt}";
                     }
+                    else if(Column == EntryColumn.IsLocal)
+                    {
+                        tableCommand = $"CREATE VIEW IF NOT EXISTS {"[" + Column.ToString() + "_" + Query + "]"} AS SELECT * FROM Images WHERE {Column.ToString()} = {Query}";
+                    }
                     else
                     {
-                        tableCommand = $"CREATE VIEW IF NOT EXISTS {"[" + Column.ToString() + "_" + Query + "]"} AS SELECT * FROM Images WHERE {Column.ToString()} = {'"' + Query + '"'}";
+                        tableCommand = $"CREATE VIEW IF NOT EXISTS {"[" + Column.ToString() + "_" + Query + "]"} AS SELECT * FROM Images WHERE {Column.ToString()} LIKE {"\"%" + Query + '%' + '"'}";
                     }
 
                     SqliteCommand sqliteCommand = new SqliteCommand(tableCommand, db);

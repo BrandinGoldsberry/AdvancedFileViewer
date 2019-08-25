@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
+using Windows.System;
+using Windows.Storage;
 
 namespace AdvancedFileViewer.Managers
 {
@@ -93,6 +95,13 @@ namespace AdvancedFileViewer.Managers
                     Rectangle holder = new Rectangle();
                     Viewbox vb = new Viewbox();
                     TextBlock cell = new TextBlock();
+
+
+                    cell.DoubleTapped += async (sender, e) =>
+                    {
+                        StorageFile toOpen = await StorageFile.GetFileFromPathAsync(r.Path);
+                        await Launcher.LaunchFileAsync(toOpen);
+                    };
 
                     holder.Stroke = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
                     holder.StrokeThickness = 0.5;
