@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
@@ -91,6 +93,95 @@ namespace AdvancedFileViewer.Managers
                 }
             }
             return NewFile;
+        }
+
+        public static async void ZipContents(StorageFolder folder, string zipName)
+        {
+            FolderPicker folderEnd = new FolderPicker
+            {
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+            };
+            folderEnd.FileTypeFilter.Add("*");
+            StorageFolder folder2 = await folderEnd.PickSingleFolderAsync();
+
+            TestFile(folder.Path, folder2.Path + "\\" + zipName + ".zip");
+        }
+
+        private static void TestFile(string startDir, string zipPath)
+        {
+            var t = Task.Run(() => ZipFile.CreateFromDirectory(startDir, zipPath));
+            t.Wait();
+        }
+
+        public static async Task<StorageFile> ReSize(uint width, uint length, StorageFile inputFile, List<string> saveExtenstionList)
+        {
+            SoftwareBitmap ImageEdit;
+
+            using (IRandomAccessStream stream = await inputFile.OpenAsync(FileAccessMode.Read))
+            {
+                // Create the decoder from the stream
+                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+
+                // Get the SoftwareBitmap representation of the file
+                ImageEdit = await decoder.GetSoftwareBitmapAsync();
+            }
+
+            FileSavePicker fileSavePicker = new FileSavePicker
+            {
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary
+            };
+            fileSavePicker.FileTypeChoices.Add("All Files", saveExtenstionList);
+            foreach (var item in saveExtenstionList)
+            {
+                fileSavePicker.FileTypeChoices.Add($"{item} file", new List<string>() { item });
+            }
+            fileSavePicker.SuggestedFileName = "ImageResize";
+
+            var outputFile = await fileSavePicker.PickSaveFileAsync();
+
+            if (outputFile == null)
+            {
+                return null;
+            }
+
+            using (IRandomAccessStream stream = await outputFile.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                // Create an encoder with the desired format
+                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, stream);
+
+                // Set the software bitmap
+                encoder.SetSoftwareBitmap(ImageEdit);
+
+                // Set additional encoding parameters, if needed
+                encoder.BitmapTransform.ScaledWidth = width;
+                encoder.BitmapTransform.ScaledHeight = length;
+                encoder.IsThumbnailGenerated = true;
+
+                try
+                {
+                    await encoder.FlushAsync();
+                }
+                catch (Exception err)
+                {
+                    const int WINCODEC_ERR_UNSUPPORTEDOPERATION = unchecked((int)0x88982F81);
+                    switch (err.HResult)
+                    {
+                        case WINCODEC_ERR_UNSUPPORTEDOPERATION:
+                            // If the encoder does not support writing a thumbnail, then try again
+                            // but disable thumbnail generation.
+                            encoder.IsThumbnailGenerated = false;
+                            break;
+                        default:
+                            throw;
+                    }
+                }
+
+                if (encoder.IsThumbnailGenerated == false)
+                {
+                    await encoder.FlushAsync();
+                }
+            }
+            return outputFile;
         }
     }
 }
