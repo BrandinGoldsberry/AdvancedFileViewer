@@ -1,0 +1,30 @@
+Crud push - 7th of August
+	- Sunderland
+		- Stubbed Out basic functions
+		- Defined rules for how methods call each other
+			- Enforced Rules
+	- Goldsberry
+		- Coded functionality
+			- Opening and connecting to database
+
+Massive GUI Update - 14th of August
+	- Sunderland
+		- Defined how the GUI should look and generally function
+		- Defined how each method in Main.xaml.cs should tie in to each GUI feature
+		- Lined out how Dynamic Table constructor should work and what it should return
+		- Defined how query manager should function and its purpose
+	- Goldsberry
+		- Ensured Sunderland's vision was in line with the goal of the product and was met minus limitations
+		- Implemented gui functinality and linked it to the other APIs and Managers
+		- Fixed issue in database manager with data not being correct types
+		- Worked with sunderland to create loops to create elements inside of the grid in dynamic table constructor
+		
+Image Recoloring
+	- Goldsberry
+		- Had a breakthrough with image manipulation and allowed for recoloring images
+		
+Bug And Feature Fixes
+	- Both
+		- General testing fixes
+	- Sunderland
+		- Suggested for limiting image types when gifs didn't work
