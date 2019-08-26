@@ -22,6 +22,9 @@ using AdvancedFileViewer.Models;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using System.Drawing;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Popups;
+using Windows.System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -51,15 +54,22 @@ namespace AdvancedFileViewer
 
         }
 
-        public void OnFetch(object sender, RoutedEventArgs e)
+        public async void OnFetch(object sender, RoutedEventArgs e)
         {
-            ImageFetch.GetPixaBayImage(PixImageSearchName.Text, (bool)PixDownloadSearched.IsChecked);
+            MessageDialog warning = new MessageDialog("Do not close out of the program while images download in background", "Important");
+            warning.Commands.Add(new UICommand(
+                "Continue"
+                ));
+            await warning.ShowAsync();
+            await ImageFetch.GetPixaBayImage(PixImageSearchName.Text, (bool)PixDownloadSearched.IsChecked);
+            DynamicTableConstructor.OnRefresh();
+            OnLoadQuery();
         }
 
         public void OnSaveQuery(object sender, RoutedEventArgs e)
         {
             QueryManager.SaveQuery((EntryColumn)qSelect.SelectedItem, qText.Text);
-            Query Q = new Query{ Column = (EntryColumn)qSelect.SelectedItem, Value = qText.Text };
+            Query Q = new Query { Column = (EntryColumn)qSelect.SelectedItem, Value = qText.Text };
             LoadQuery.Items.Add(Q);
         }
 
@@ -78,6 +88,24 @@ namespace AdvancedFileViewer
                     FrameworkElement toAdd = DynamicTableConstructor.BuildRows();
                     Table.Content = toAdd;
                     Table.UpdateLayout();
+
+                    DeleteID.Items.Clear();
+                    EditID.Items.Clear();
+                    ImageSelect.Items.Clear();
+
+                    foreach (Entry en in DatabaseManager.GetEntries())
+                    {
+                        //EditID.Items.Add(e);
+                        if (en.IsLocal)
+                        {
+                            DeleteID.Items.Add(en);
+                            EditID.Items.Add(en);
+                        }
+                        if (en.Path.Substring(en.Path.Length - 3) != "gif")
+                        {
+                            ImageSelect.Items.Add(en);
+                        }
+                    }
                 }
                 else
                 {
@@ -85,18 +113,25 @@ namespace AdvancedFileViewer
                     Entry[] entries = QueryManager.LoadQuery(q.Column, q.Value);
                     FrameworkElement toAdd = DynamicTableConstructor.BuildRows(entries);
                     Table.Content = toAdd;
+
+                    DeleteID.Items.Clear();
+                    EditID.Items.Clear();
+                    ImageSelect.Items.Clear();
+
+                    foreach (Entry en in entries)
+                    {
+                        //EditID.Items.Add(e);
+                        if (en.IsLocal)
+                        {
+                            DeleteID.Items.Add(en);
+                            EditID.Items.Add(en);
+                        }
+                        ImageSelect.Items.Add(en);
+                    }
                 }
             }
 
-            DeleteID.Items.Clear();
-            EditID.Items.Clear();
 
-            foreach (Entry en in DatabaseManager.GetEntries())
-            {
-                //EditID.Items.Add(e);
-                DeleteID.Items.Add(en);
-                EditID.Items.Add(en);
-            }
         }
 
         public static void OnProgramExit()
@@ -128,35 +163,44 @@ namespace AdvancedFileViewer
 
             //EditType.Items.Add("Color Tint");
 
-            foreach (Entry e in DatabaseManager.GetEntries())
-            {
-                //EditID.Items.Add(e);
-                DeleteID.Items.Add(e);
-                EditID.Items.Add(e);
-            }
+            //foreach (Entry e in DatabaseManager.GetEntries())
+            //{
+            //    //EditID.Items.Add(e);
+            //    if (e.IsLocal)
+            //    {
+            //        DeleteID.Items.Add(e);
+            //        EditID.Items.Add(e);
+            //    }
+            //    ImageSelect.Items.Add(e);
+            //}
         }
 
         public async void OnEditImage(object sender, RoutedEventArgs e)
         {
             Entry selected = (Entry)EditID.SelectedItem;
             FolderPicker folderPicker = new FolderPicker();
-            folderPicker.FileTypeFilter.Add("*");
+            folderPicker.FileTypeFilter.Add(".png");
+            folderPicker.FileTypeFilter.Add(".jpg");
+            folderPicker.FileTypeFilter.Add(".jpeg");
 
             StorageFile OpenFile = await StorageFile.GetFileFromPathAsync(selected.Path);
             StorageFolder SaveFolder = await folderPicker.PickSingleFolderAsync();
 
+            string fileType = selected.Path.Split(".")[1];
+
             StorageFile newFile = await ImageManipulation.RGBRecolor
             (
+                fileType,
                 OpenFile,
                 SaveFolder,
                 byte.Parse(((TextBox)FindName("RedEditValue")).Text),
                 byte.Parse(((TextBox)FindName("GreenEditValue")).Text),
                 byte.Parse(((TextBox)FindName("BlueEditValue")).Text)
             );
-            //var props = await newFile.GetBasicPropertiesAsync();
-            //var imgProps = await newFile.Properties.GetImagePropertiesAsync();
+            var props = await newFile.GetBasicPropertiesAsync();
+            var imgProps = await newFile.Properties.GetImagePropertiesAsync();
 
-            //DatabaseManager.SaveNewEntry(new Entry(OpenFile.Path, selected.Name, true, props.Size, selected.Searched, imgProps.Height, imgProps.Width));
+            DatabaseManager.SaveNewEntry(new Entry(newFile.Path, "Color Tinted " + selected.Name, true, props.Size, selected.Searched, imgProps.Height, imgProps.Width));
         }
 
         private void LoadQuery_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -245,5 +289,65 @@ namespace AdvancedFileViewer
             OnLoadQuery();
         }
 
+        private async void ImageSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Entry toOpen = ImageSelect.SelectedValue as Entry;
+            if (toOpen.Path.Substring(toOpen.Path.Length - 3) != "gif")
+            {
+                if (toOpen.IsLocal)
+                {
+                    StorageFile ImageFile = null;
+                    BitmapImage bitmap = null;
+                    ImageFile = await StorageFile.GetFileFromPathAsync(toOpen.Path);
+                    bitmap = new BitmapImage();
+                    var source = await ImageFile.OpenReadAsync();
+                    await bitmap.SetSourceAsync(source);
+                    PreviewImage.Source = bitmap;
+                }
+                else
+                {
+                    PreviewImage.Source = new BitmapImage(new Uri(toOpen.Path, UriKind.Absolute));
+                }
+
+                PreviewImage.Height = 600;
+                PreviewImage.Width = 600;
+            }
+            else
+            {
+                MessageDialog warning = new MessageDialog("Displaying Gifs Not Supported at this time", "Warning");
+                warning.Commands.Add(new UICommand(
+                    "Ok"
+                    ));
+            }
+        }
+
+        private async void FileLocationOpen_Click(object sender, RoutedEventArgs e)
+        {
+            Entry toOpen = ImageSelect.SelectedValue as Entry;
+            if (toOpen != null)
+            {
+                int idLast = toOpen.Path.LastIndexOf("\\");
+                string FolderPath = null;
+                if(idLast != -1)
+                {
+                    FolderPath = toOpen.Path.Substring(0, idLast);
+                }
+
+                StorageFolder openLoc = await StorageFolder.GetFolderFromPathAsync(FolderPath);
+                await Launcher.LaunchFolderAsync(openLoc);
+            }
+        }
+
+        private async void SafeBooruFetch_Click(object sender, RoutedEventArgs e)
+        {
+            MessageDialog warning = new MessageDialog("Do not close out of the program while images download in background", "Important");
+            warning.Commands.Add(new UICommand(
+                "Continue"
+                ));
+            await warning.ShowAsync();
+            await ImageFetch.GetSafeBooruImage(SafeBooruSearchName.Text, (bool)SafeBooruDownloadSearched.IsChecked);
+            DynamicTableConstructor.OnRefresh();
+            OnLoadQuery();
+        }
     }
 }

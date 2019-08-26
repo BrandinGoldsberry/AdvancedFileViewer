@@ -25,7 +25,7 @@ namespace AdvancedFileViewer.Managers
             if(download)
             {
                 StorageFolder basefolder = await StorageFolder.GetFolderFromPathAsync(Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
-                StorageFolder folder = await basefolder.CreateFolderAsync(Windows.ApplicationModel.Package.Current.InstalledLocation.Path + "\\images\\PixaBayDownloads", CreationCollisionOption.OpenIfExists);
+                StorageFolder folder = await basefolder.CreateFolderAsync("images\\PixaBayDownloads", CreationCollisionOption.OpenIfExists);
                 int count = 0;
                 foreach(PixImage image in Images)
                 {
@@ -61,7 +61,7 @@ namespace AdvancedFileViewer.Managers
             if (Download)
             {
                 StorageFolder basefolder = await StorageFolder.GetFolderFromPathAsync(Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
-                StorageFolder folder = await basefolder.CreateFolderAsync(Windows.ApplicationModel.Package.Current.InstalledLocation.Path + "\\images\\SafeBooruDownloads", CreationCollisionOption.OpenIfExists);
+                StorageFolder folder = await basefolder.CreateFolderAsync("images\\SafeBooruDownloads", CreationCollisionOption.OpenIfExists);
                 int count = 0;
                 foreach (SBImage image in Images)
                 {

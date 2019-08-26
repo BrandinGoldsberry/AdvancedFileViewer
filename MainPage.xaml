@@ -10,78 +10,101 @@
 
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid x:Name="TopLevel">
-        <AppBar></AppBar>
-        <Pivot x:Name="rootPivot" Title="Advanced Photo Viewr">
-            <PivotItem Header="Query Selection">
-                <StackPanel Grid.Row="0" Margin="10" Orientation="Horizontal">
-                    <ComboBox x:Name="LoadQuery" FontSize="20" Background="#CCCCCC" SelectionChanged="LoadQuery_SelectionChanged"/>
-                    <controls:Expander Header="New Query" x:Name="NewQueryDrop" >
-                        <StackPanel>
-                            <TextBlock Text="Select a column and enter a string" Height="50" HorizontalAlignment="Left" FontSize="30"/>
-                            <ComboBox x:Name="qSelect"/>
-                            <TextBox x:Name="qText" FontSize = "30" Height = "50" Width = "300" HorizontalAlignment = "Left"/>
-                            <Button x:Name="Query" FontSize = "30" Height = "50" HorizontalAlignment = "Left" Content="Enter Query" Click="OnSaveQuery"/>
-                        </StackPanel>
-                    </controls:Expander>
-                    <Button x:Name="RefreshDatabase" HorizontalAlignment = "Left" Content="Refresh Table" Click="RefreshDatabase_Click"/>
-                </StackPanel>
-            </PivotItem>
-            <PivotItem Header="Pixabay Image Fetch">
-                <StackPanel>
-                    <TextBlock Text="Enter a search Term" Height="50" HorizontalAlignment="Left" FontSize="30"/>
-                    <TextBox x:Name="PixImageSearchName" Width = "300" HorizontalAlignment = "Left"/>
-                    <CheckBox x:Name="PixDownloadSearched"/>
-                    <Button x:Name="PixImageFetch" HorizontalAlignment = "Left" Content="Fetch Image" Click="OnFetch"/>
-                </StackPanel>
-            </PivotItem>
-            <PivotItem Header="Index New Image">
-                <StackPanel HorizontalAlignment="Left">
-                    <TextBlock Margin="5">Name of Image</TextBlock>
-                    <TextBox Margin="5" Width="300" x:Name="NewImageName"></TextBox>
-                    <TextBlock Margin="5">Path of Image</TextBlock>
-                    <TextBox Margin="5" Width="300" x:Name="NewImagePath"></TextBox>
-                    <Button Margin="5" x:Name="NewImagePathPick" Click="NewImagePathPick_Click">Get Image Path</Button>
-                    <Button Margin="5" x:Name="NewImageSave" Click="NewImageSave_Click">Save New Image</Button>
-                </StackPanel>
-            </PivotItem>
-            <PivotItem Header="Edit Iamge">
-                <StackPanel HorizontalAlignment="Left">
-                    <TextBlock Margin="5">Edit Type</TextBlock>
-                    <ComboBox x:Name="EditType" HorizontalAlignment="Left" SelectionChanged="EditType_SelectionChanged">
-                        <ComboBoxItem Content="Color Tint"/>
-                    </ComboBox>
-                    <TextBlock Margin="5">Edit Type</TextBlock>
-                    <ComboBox x:Name="EditID" HorizontalAlignment="Left">
-                        
-                    </ComboBox>
-                    <StackPanel x:Name="EditInputs" HorizontalAlignment="Left">
-
+        <ScrollViewer>
+            <StackPanel x:Name="rootPivot">
+                <controls:Expander Header="Query Selection" Margin="0 30 0 0">
+                    <StackPanel Margin="10" Orientation="Vertical">
+                        <controls:Expander Header="New Query" x:Name="NewQueryDrop"  Width="300" HorizontalAlignment="Left">
+                            <StackPanel>
+                                <TextBlock Text="Select a column and enter a string" Height="50" HorizontalAlignment="Left" FontSize="30"/>
+                                <ComboBox x:Name="qSelect"/>
+                                <TextBox x:Name="qText" FontSize = "30" Height = "50" Width = "300" HorizontalAlignment = "Left"/>
+                                <Button x:Name="Query" FontSize = "30" Height = "50" HorizontalAlignment = "Left" Content="Enter Query" Click="OnSaveQuery"/>
+                            </StackPanel>
+                        </controls:Expander>
+                        <TextBlock Margin="5" FontSize="30">Select Query</TextBlock>
+                        <ComboBox x:Name="LoadQuery" Margin="5" FontSize="20" Background="#CCCCCC" SelectionChanged="LoadQuery_SelectionChanged"/>
+                        <Button x:Name="RefreshDatabase" HorizontalAlignment = "Left" Content="Refresh Table" Click="RefreshDatabase_Click"/>
                     </StackPanel>
-                    <Button Margin="5" x:Name="EditImageSave" Click="OnEditImage">Save New Image</Button>
-                    <Image x:Name="Sam" Height="162" Width="224">
-                        
-                    </Image>
-                </StackPanel>
-            </PivotItem>
-            <PivotItem Header="Delete Image">
-                <StackPanel HorizontalAlignment="Left">
-                    <TextBlock Margin="5">Name of Image</TextBlock>
-                    <TextBox Margin="5" Width="300" x:Name="ImageToDelete"></TextBox>
-                    <TextBlock Margin="5">Path of Image</TextBlock>
-                    <ComboBox x:Name="DeleteID" HorizontalAlignment="Left">
-                        
-                    </ComboBox>
-                    <Button Margin="5" x:Name="ImageDelete" Click="ImageDelete_Click">Delete Image</Button>
-                </StackPanel>
-            </PivotItem>
-        </Pivot>
-        <ScrollViewer Grid.Row="1" ZoomMode="Enabled" VerticalScrollBarVisibility="Visible" VerticalScrollMode="Enabled"  x:Name="Table" >
+                </controls:Expander>
+                <controls:Expander Header="Pixabay Image Search">
+                    <StackPanel>
+                        <TextBlock Text="Enter a search Term" Height="30" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="PixImageSearchName" Width = "300" HorizontalAlignment = "Left"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5">Download Image?</TextBlock>
+                            <CheckBox x:Name="PixDownloadSearched"/>
+                        </StackPanel>
+                        <Button x:Name="PixImageFetch" HorizontalAlignment = "Left" Content="Fetch Image" Click="OnFetch"/>
+                    </StackPanel>
+                </controls:Expander>
+                <controls:Expander Header="Safebooru Image Search">
+                    <StackPanel>
+                        <TextBlock Margin="5" Text="Enter a search Term" Height="30" HorizontalAlignment="Left"/>
+                        <TextBox Margin="5" x:Name="SafeBooruSearchName" Width = "300" HorizontalAlignment = "Left"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5">Download Image?</TextBlock>
+                            <CheckBox x:Name="SafeBooruDownloadSearched"/>
+                        </StackPanel>
+                        <Button x:Name="SafeBooruFetch" HorizontalAlignment = "Left" Content="Fetch Image" Click="SafeBooruFetch_Click"/>
+                    </StackPanel>
+                </controls:Expander>
+                <controls:Expander Header="Index New Image">
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock Margin="5">Name of Image</TextBlock>
+                        <TextBox Margin="5" Width="300" x:Name="NewImageName"></TextBox>
+                        <TextBlock Margin="5">Path of Image</TextBlock>
+                        <TextBox Margin="5" Width="300" x:Name="NewImagePath"></TextBox>
+                        <Button Margin="5" x:Name="NewImagePathPick" Click="NewImagePathPick_Click">Get Image Path</Button>
+                        <Button Margin="5" x:Name="NewImageSave" Click="NewImageSave_Click">Save New Image</Button>
+                    </StackPanel>
+                </controls:Expander>
+                <controls:Expander Header="Edit Image">
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock Margin="5">Edit Type</TextBlock>
+                        <ComboBox x:Name="EditType" HorizontalAlignment="Left" SelectionChanged="EditType_SelectionChanged">
+                            <ComboBoxItem Content="Color Tint"/>
+                        </ComboBox>
+                        <TextBlock Margin="5">Image Select</TextBlock>
+                        <ComboBox x:Name="EditID" HorizontalAlignment="Left">
+
+                        </ComboBox>
+                        <StackPanel x:Name="EditInputs" HorizontalAlignment="Left">
+
+                        </StackPanel>
+                        <Button Margin="5" x:Name="EditImageSave" Click="OnEditImage">Save New Image</Button>
+                        <Image x:Name="Sam" Height="162" Width="224">
+
+                        </Image>
+                    </StackPanel>
+                </controls:Expander>
+                <controls:Expander Header="Delete Image">
+                    <StackPanel HorizontalAlignment="Left">
+                        <TextBlock Margin="5">Name of Image</TextBlock>
+                        <TextBox Margin="5" Width="300" x:Name="ImageToDelete"></TextBox>
+                        <TextBlock Margin="5">Path of Image</TextBlock>
+                        <ComboBox x:Name="DeleteID" HorizontalAlignment="Left">
+
+                        </ComboBox>
+                        <Button Margin="5" x:Name="ImageDelete" Click="ImageDelete_Click">Delete Image</Button>
+                    </StackPanel>
+                </controls:Expander>
+                <controls:Expander Header="Preview Images">
+                    <StackPanel HorizontalAlignment="Center">
+                        <ComboBox x:Name="ImageSelect" HorizontalAlignment="Center" Margin="30" SelectionChanged="ImageSelect_SelectionChanged"/>
+                        <Image x:Name="PreviewImage" HorizontalAlignment="Center" Margin="30" MaxHeight="1000" MaxWidth="1000"></Image>
+                        <Button x:Name="FileLocationOpen" HorizontalAlignment="Center" Click="FileLocationOpen_Click">Open File Location</Button>
+                    </StackPanel>
+                </controls:Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Margin="0 30 0 0" Grid.Column="1" ZoomMode="Enabled" VerticalScrollBarVisibility="Visible" VerticalScrollMode="Enabled"  x:Name="Table" >
 
         </ScrollViewer>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="{Binding Source=rootPivot, Path=Height}"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
     </Grid>
 </Page>

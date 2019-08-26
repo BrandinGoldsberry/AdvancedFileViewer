@@ -105,7 +105,17 @@ namespace AdvancedFileViewer.Managers
 
                     holder.Stroke = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
                     holder.StrokeThickness = 0.5;
-                    cell.Text = data[i];
+                    if(i == 4)
+                    {
+                        ulong fileSize = ulong.Parse(data[i]);
+                        string ByteString = null;
+                        fileSize = ConvertToBytes(fileSize, out ByteString);
+                        cell.Text = fileSize.ToString() + " " + ByteString;
+                    }
+                    else
+                    {
+                        cell.Text = data[i];
+                    }
                     cell.FontSize = fontSize;
                     cell.Margin = new Thickness(10);
 
@@ -186,7 +196,17 @@ namespace AdvancedFileViewer.Managers
 
                     holder.Stroke = new SolidColorBrush(Color.FromArgb(255, 230, 230, 230));
                     holder.StrokeThickness = 0.5;
-                    cell.Text = data[i];
+                    if (i == 4)
+                    {
+                        ulong fileSize = ulong.Parse(data[i]);
+                        string ByteString = null;
+                        fileSize = ConvertToBytes(fileSize, out ByteString);
+                        cell.Text = fileSize.ToString() + " " + ByteString;
+                    }
+                    else
+                    {
+                        cell.Text = data[i];
+                    }
                     cell.FontSize = fontSize;
                     cell.Margin = new Thickness(10);
 
@@ -205,6 +225,36 @@ namespace AdvancedFileViewer.Managers
 
             Table.HorizontalAlignment = HorizontalAlignment.Center;
             return Table;
+        }
+
+        private static ulong ConvertToBytes(ulong input, out string ByteString)
+        {
+            ulong ret = input;
+            int count = 0;
+            while(ret > 1024)
+            {
+                ret /= 1024;
+                count++;
+            }
+            switch(count)
+            {
+                case 0:
+                    ByteString = "B";
+                    break;
+                case 1:
+                    ByteString = "Kb";
+                    break;
+                case 2:
+                    ByteString = "Mb";
+                    break;
+                case 3:
+                    ByteString = "Gb";
+                    break;
+                default:
+                    ByteString = "Too Big";
+                    break;
+            }
+            return ret;
         }
     }
 }
